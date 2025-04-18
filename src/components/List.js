@@ -1,28 +1,28 @@
 import React from 'react';
-import { useDrag, useDrop, DndProvider } from 'react-dnd';
+import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Card from './Card';
 
-const List = ({ items, moveItem, handleEdit, handleDelete, handleComplete }) => {
-  const ulStyle = {
+const ulStyle = {
     listStyleType: 'none', // Remove list item dot
-    padding: 0, // Remove default padding
+    padding: 0, // Remove default padding 
     margin: 0, // Remove default margin
     display: 'flex', // Use flexbox for layout
     flexDirection: 'column', // Align items vertically
     alignItems: 'center', // Center items horizontally
   };
 
+const List = ({ cards, handleEdit, handleDelete, handleComplete, moveCard }) => {
   return (
     <DndProvider backend={HTML5Backend}>
       <h2>Watchlist</h2>
       <ul style={ulStyle}>
-        {items.map((item, index) => (
+        {cards.map((card, index) => (
           <Card
-            key={index}
-            item={item}
+            key={card.id}
+            card={card}
             index={index}
-            moveItem={moveItem}
+            moveCard={moveCard}
             handleEdit={handleEdit}
             handleDelete={handleDelete}
             handleComplete={handleComplete}

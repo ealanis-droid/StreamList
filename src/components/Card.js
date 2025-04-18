@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faX, faEdit, faEye } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faEye } from '@fortawesome/free-solid-svg-icons';
 
 // Define a type for the draggable items
 const ItemType = {
-  ITEM: 'item',
+  CARD: 'card',
 };
 
 // Define the style constant
@@ -17,20 +17,20 @@ const style = {
   cursor: 'move',
 };
 
-const Card = ({ item, index, moveItem, handleEdit, handleDelete, handleComplete }) => {
+const Card = ({ card, index, moveCard, handleEdit, handleDelete, handleComplete }) => {
   const ref = React.useRef(null);
   const [, drop] = useDrop({
-    accept: ItemType.ITEM,
-    hover(draggedItem) {
-      if (draggedItem.index !== index) {
-        moveItem(draggedItem.index, index);
-        draggedItem.index = index;
+    accept: ItemType.CARD,
+    hover(draggedCard) {
+      if (draggedCard.index !== index) {
+        moveCard(draggedCard.index, index);
+        draggedCard.index = index;
       }
     },
   });
 
   const [{ isDragging }, drag] = useDrag({
-    type: ItemType.ITEM,
+    type: ItemType.CARD,
     item: { index },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
@@ -45,25 +45,25 @@ const Card = ({ item, index, moveItem, handleEdit, handleDelete, handleComplete 
       style={{
         ...style,
         opacity: isDragging ? 0.5 : 1,
-        color: item.completed ? 'green' : 'black',
-        fontWeight: item.completed ? 'bold' : 'normal',
+        color: card.completed ? 'green' : 'black',
+        fontWeight: card.completed ? 'bold' : 'normal',
       }}
     >
-      {item.text}
+      {card.text}
       <FontAwesomeIcon 
         icon={faEdit} 
         onClick={() => handleEdit(index)} 
         style={{ color: 'blue', marginLeft: '10px', cursor: 'pointer' }} 
       />
       <FontAwesomeIcon 
-        icon={faX} 
+        icon={faTrash} 
         onClick={() => handleDelete(index)} 
         style={{ color: 'red', marginLeft: '10px', cursor: 'pointer' }} 
       />
       <FontAwesomeIcon 
         icon={faEye} 
         onClick={() => handleComplete(index)} 
-        style={{ color: item.completed ? 'green' : 'gray', marginLeft: '10px', cursor: 'pointer' }} 
+        style={{ color: card.completed ? 'green' : 'gray', marginLeft: '10px', cursor: 'pointer' }} 
       />
     </li>
   );

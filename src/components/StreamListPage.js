@@ -13,7 +13,16 @@ const ItemType = {
 
 const StreamListPage = () => {
   const [input, setInput] = useState('');
-  const [items, setItems] = useState([]);
+  const [cards, setCards] = useState([
+    { id: 0, text: 'The Shawshank Redemption', completed: false },
+    { id: 1, text: 'The Godfather', completed: false },
+    { id: 2, text: 'The Dark Knight', completed: false },
+    { id: 3, text: '12 Angry Men', completed: false },
+    { id: 4, text: 'Schindler\'s List', completed: false },
+    { id: 5, text: 'The Lord of the Rings: The Return of the King', completed: false },
+    { id: 6, text: 'Pulp Fiction', completed: false },
+    { id: 7, text: 'The Lord of the Rings: The Fellowship of the Ring', completed: false },
+  ]);
   const [placeholder, setPlaceholder] = useState('');
   const [editIndex, setEditIndex] = useState(null);
   const [shake, setShake] = useState(false);
@@ -31,39 +40,39 @@ const StreamListPage = () => {
     }
 
     if (editIndex !== null) {
-      const updatedItems = items.map((item, index) => 
-        index === editIndex ? { text: input, completed: false } : item
+      const updatedCards = cards.map((card, index) => 
+        index === editIndex ? { ...card, text: input, completed: false } : card
       );
-      setItems(updatedItems);
+      setCards(updatedCards);
       setEditIndex(null);
     } else {
-      setItems([...items, { text: input, completed: false }]);
+      setCards([...cards, { id: cards.length, text: input, completed: false }]);
     }
     setInput('');
   };
 
   const handleDelete = (index) => {
-    const newItems = items.filter((_, i) => i !== index);
-    setItems(newItems);
+    const newCards = cards.filter((_, i) => i !== index);
+    setCards(newCards);
   };
 
   const handleEdit = (index) => {
-    setInput(items[index].text);
+    setInput(cards[index].text);
     setEditIndex(index);
   };
 
   const handleComplete = (index) => {
-    const updatedItems = items.map((item, i) => 
-      i === index ? { ...item, completed: !item.completed } : item
+    const updatedCards = cards.map((card, i) => 
+      i === index ? { ...card, completed: !card.completed } : card
     );
-    setItems(updatedItems);
+    setCards(updatedCards);
   };
 
-  const moveItem = (fromIndex, toIndex) => {
-    const updatedItems = Array.from(items);
-    const [movedItem] = updatedItems.splice(fromIndex, 1);
-    updatedItems.splice(toIndex, 0, movedItem);
-    setItems(updatedItems);
+  const moveCard = (fromIndex, toIndex) => {
+    const updatedCards = Array.from(cards);
+    const [movedCard] = updatedCards.splice(fromIndex, 1);
+    updatedCards.splice(toIndex, 0, movedCard);
+    setCards(updatedCards);
   };
 
   return (
@@ -83,8 +92,8 @@ const StreamListPage = () => {
         </div>
       </form>
       <List
-        items={items}
-        moveItem={moveItem}
+        cards={cards}
+        moveCard={moveCard}
         handleEdit={handleEdit}
         handleDelete={handleDelete}
         handleComplete={handleComplete}
