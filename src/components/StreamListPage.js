@@ -1,6 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faPlus, faEdit, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { useDrag, useDrop, DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import Card from './Card';
+import List from './List';
+
+// Define a type for the draggable items
+const ItemType = {
+  ITEM: 'item',
+};
 
 const StreamListPage = () => {
   const [input, setInput] = useState('');
@@ -50,6 +59,13 @@ const StreamListPage = () => {
     setItems(updatedItems);
   };
 
+  const moveItem = (fromIndex, toIndex) => {
+    const updatedItems = Array.from(items);
+    const [movedItem] = updatedItems.splice(fromIndex, 1);
+    updatedItems.splice(toIndex, 0, movedItem);
+    setItems(updatedItems);
+  };
+
   return (
     <div className="centered-page">
       <h1>Welcome {'{{USER}}'}</h1>
@@ -66,28 +82,13 @@ const StreamListPage = () => {
           </button>
         </div>
       </form>
-      <ul>
-        {items.map((item, index) => (
-          <li key={index} style={{ textDecoration: item.completed ? 'line-through' : 'none' }}>
-            {item.text}
-            <FontAwesomeIcon 
-              icon={faEdit} 
-              onClick={() => handleEdit(index)} 
-              style={{ color: 'blue', marginLeft: '10px', cursor: 'pointer' }} 
-            />
-            <FontAwesomeIcon 
-              icon={faTrash} 
-              onClick={() => handleDelete(index)} 
-              style={{ color: 'red', marginLeft: '10px', cursor: 'pointer' }} 
-            />
-            <FontAwesomeIcon 
-              icon={faCheck} 
-              onClick={() => handleComplete(index)} 
-              style={{ color: item.completed ? 'green' : 'gray', marginLeft: '10px', cursor: 'pointer' }} 
-            />
-          </li>
-        ))}
-      </ul>
+      <List
+        items={items}
+        moveItem={moveItem}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+        handleComplete={handleComplete}
+      />
     </div>
   );
 };
