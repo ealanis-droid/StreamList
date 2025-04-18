@@ -33,6 +33,15 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faInfoCircle} /> About
           </Link>
         </li>
+        <li className="user-profile">
+          <Link to="/profile" onClick={() => setIsOpen(false)}>
+            <img 
+              src="https://i.pravatar.cc/40" // Placeholder for avatar
+              alt="User Avatar"
+              className="avatar"
+            />
+          </Link>
+        </li>
       </ul>
     </nav>
   );

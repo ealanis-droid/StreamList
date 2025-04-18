@@ -14,7 +14,6 @@ body {
 nav {
   background-color: #0d3b66; /* Dark Blue from the image */
   color: white;
-  padding: 10px;
   position: fixed;
   width: 100%;
   top: 0;
@@ -23,16 +22,21 @@ nav {
 
 nav ul {
   list-style-type: none;
-  padding: 0;
   display: flex;
   justify-content: space-around;
   margin: 0;
 }
 
+nav ul li {
+  display: flex; /* Ensure list items are flex containers */
+  align-items: center; /* Center icons and text vertically */
+
+}
+
 nav ul li a {
   color: white;
   text-decoration: none;
-  padding: 10px;
+  padding: 5px;
   transition: background-color 0.3s, border-radius 0.3s;
   border-radius: 5px;
 }
@@ -58,20 +62,53 @@ form {
   align-items: center;
 }
 
-input[type="text"] {
-  padding: 5px;
-  margin-bottom: 10px;
-  border: 1px solid #0d3b66; /* Dark Blue */
+.input-wrapper {
+    position: relative;
+    display: inline-block;
 }
 
-button {
-  padding: 5px 10px;
-  background-color: #0d3b66; /* Dark Blue */
-  color: white;
-  border: none;
-  cursor: pointer;
+.input-wrapper input {
+    padding: 10px;
+    padding-right: 40px; /* Add padding to the right for the icon */
+    border: 1px solid #0d3b66; /* Dark Blue */
+    border-radius: 5px;
+    width: 200px;
 }
 
-button:hover {
-  background-color: #3d5a80; /* Complementary lighter blue */
-} 
+@keyframes shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(-2px, 0); }
+  50% { transform: translate(2px, 0); }
+  75% { transform: translate(-2px, 0); }
+  100% { transform: translate(0); }
+}
+
+.add-button {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Position the button inside the input */
+  transform: translateY(-50%); /* Center vertically */
+  border: none; /* Remove border */
+  background: none; /* Remove background */
+  cursor: pointer; /* Change cursor to pointer */
+  transition: transform 0.3s linear; /* Smooth transition for scaling */
+}
+
+.add-button:hover {
+  transform: translateY(-50%) scale(1.5); /* Scale the icon on hover */
+}
+
+.add-button.shake {
+  animation: shake 0.5s; /* Apply shake animation */
+}
+
+.user-profile {
+  display: flex;
+  align-items: center; /* Center items vertically */
+}
+
+.user-profile .avatar {
+  border-radius: 50%; /* Make the avatar circular */
+  width: 40px; /* Adjust width to match icon size */
+  height: 40px; /* Adjust height to match icon size */
+}
