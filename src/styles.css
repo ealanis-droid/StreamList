@@ -112,3 +112,7 @@ form {
   width: 40px; /* Adjust width to match icon size */
   height: 40px; /* Adjust height to match icon size */
 }
+
+.input-wrapper.shake {
+  animation: shake 0.5s; /* Apply shake animation */
+}

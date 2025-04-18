@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faPlus, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPlus, faEdit, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const StreamListPage = () => {
   const [input, setInput] = useState('');
   const [items, setItems] = useState([]);
   const [placeholder, setPlaceholder] = useState('');
   const [editIndex, setEditIndex] = useState(null);
+  const [shake, setShake] = useState(false);
 
   useEffect(() => {
     setPlaceholder('Enter movie title');
@@ -14,18 +15,22 @@ const StreamListPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (input) {
-      if (editIndex !== null) {
-        const updatedItems = items.map((item, index) => 
-          index === editIndex ? { text: input, completed: false } : item
-        );
-        setItems(updatedItems);
-        setEditIndex(null);
-      } else {
-        setItems([...items, { text: input, completed: false }]);
-      }
-      setInput('');
+    if (input.trim() === '') {
+      setShake(true);
+      setTimeout(() => setShake(false), 500);
+      return;
     }
+
+    if (editIndex !== null) {
+      const updatedItems = items.map((item, index) => 
+        index === editIndex ? { text: input, completed: false } : item
+      );
+      setItems(updatedItems);
+      setEditIndex(null);
+    } else {
+      setItems([...items, { text: input, completed: false }]);
+    }
+    setInput('');
   };
 
   const handleDelete = (index) => {
@@ -49,7 +54,7 @@ const StreamListPage = () => {
     <div className="centered-page">
       <h1>Welcome {'{{USER}}'}</h1>
       <form onSubmit={handleSubmit}>
-        <div className="input-wrapper">
+        <div className={`input-wrapper ${shake ? 'shake' : ''}`}>
           <input
             type="text"
             value={input}
@@ -74,6 +79,11 @@ const StreamListPage = () => {
               icon={faTrash} 
               onClick={() => handleDelete(index)} 
               style={{ color: 'red', marginLeft: '10px', cursor: 'pointer' }} 
+            />
+            <FontAwesomeIcon 
+              icon={faCheck} 
+              onClick={() => handleComplete(index)} 
+              style={{ color: item.completed ? 'green' : 'gray', marginLeft: '10px', cursor: 'pointer' }} 
             />
           </li>
         ))}
