@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faPlus, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faPlus, faEdit, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const StreamListPage = () => {
   const [input, setInput] = useState('');
@@ -74,6 +74,11 @@ const StreamListPage = () => {
               icon={faTrash} 
               onClick={() => handleDelete(index)} 
               style={{ color: 'red', marginLeft: '10px', cursor: 'pointer' }} 
+            />
+            <FontAwesomeIcon 
+              icon={faCheck} 
+              onClick={() => handleComplete(index)} 
+              style={{ color: item.completed ? 'green' : 'gray', marginLeft: '10px', cursor: 'pointer' }} 
             />
           </li>
         ))}
