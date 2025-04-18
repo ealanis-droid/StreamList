@@ -1,40 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faFilm, faShoppingCart, faInfoCircle, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faFilm, faShoppingCart, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <nav>
-      <ul className={isOpen ? 'open' : ''}>
+      <ul>
         <li>
-          <Link to="/" onClick={() => setIsOpen(false)}>
+          <Link to="/">
             <FontAwesomeIcon icon={faHome} /> StreamList
           </Link>
         </li>
         <li>
-          <Link to="/movies" onClick={() => setIsOpen(false)}>
+          <Link to="/movies">
             <FontAwesomeIcon icon={faFilm} /> Movies
           </Link>
         </li>
         <li>
-          <Link to="/cart" onClick={() => setIsOpen(false)}>
+          <Link to="/cart">
             <FontAwesomeIcon icon={faShoppingCart} /> Cart
           </Link>
         </li>
         <li>
-          <Link to="/about" onClick={() => setIsOpen(false)}>
+          <Link to="/about">
             <FontAwesomeIcon icon={faInfoCircle} /> About
           </Link>
         </li>
         <li className="user-profile">
-          <Link to="/profile" onClick={() => setIsOpen(false)}>
+          <Link to="/profile">
             <img 
               src="https://i.pravatar.cc/40" // Placeholder for avatar
               alt="User Avatar"

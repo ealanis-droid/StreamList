@@ -116,3 +116,7 @@ form {
 .input-wrapper.shake {
   animation: shake 0.5s; /* Apply shake animation */
 }
+
+ul {
+  list-style-type: none; /* Remove list item dot */
+}
