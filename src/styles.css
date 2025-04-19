@@ -120,3 +120,74 @@ form {
 ul {
   list-style-type: none; /* Remove list item dot */
 }
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0d3b66;
+  padding: 10px 20px;
+  color: white;
+}
+
+.logo {
+  font-size: 1.5em;
+  color: white;
+  text-decoration: none;
+}
+
+.tabbed-primary-navigation {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation-tab {
+  margin-right: 20px;
+}
+
+.navigation-tab a {
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  transition: background-color 0.3s;
+}
+
+.navigation-tab a:hover {
+  background-color: #3d5a80;
+}
+
+.secondary-navigation {
+  display: flex;
+  align-items: center;
+}
+
+.nav-element {
+  margin-left: 20px;
+}
+
+.profile-link {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: white;
+  color: black;
+  right: 0;
+  top: 100%;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 10px;
+  color: black;
+  text-decoration: none;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f0f4f8;
+}
