@@ -67,6 +67,13 @@ const StreamListPage = () => {
     setCards(updatedCards);
   };
 
+  const moveCard = (fromIndex, toIndex) => {
+    const updatedCards = Array.from(cards);
+    const [movedCard] = updatedCards.splice(fromIndex, 1);
+    updatedCards.splice(toIndex, 0, movedCard);
+    setCards(updatedCards);
+  };
+
   return (
     <div className="centered-page">
       <h1>Welcome {'{{USER}}'}</h1>
@@ -85,6 +92,7 @@ const StreamListPage = () => {
       </form>
       <List
         cards={cards}
+        moveCard={moveCard}
         handleEdit={handleEdit}
         handleDelete={handleDelete}
         handleComplete={handleComplete}

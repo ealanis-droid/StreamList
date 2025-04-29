@@ -12,7 +12,7 @@ const ulStyle = {
     alignItems: 'center', // Center items horizontally
   };
 
-const List = ({ cards, handleEdit, handleDelete, handleComplete, moveCard }) => {
+const List = ({ cards, moveCard, handleEdit, handleDelete, handleComplete }) => {
   return (
     <DndProvider backend={HTML5Backend}>
       <h2>Watchlist</h2>
