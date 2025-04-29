@@ -1,28 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faPlus, faEdit, faCheck } from '@fortawesome/free-solid-svg-icons';
-import { useDrag, useDrop, DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import Card from './Card';
+import { faPlus} from '@fortawesome/free-solid-svg-icons';
 import List from './List';
-
-// Define a type for the draggable items
-const ItemType = {
-  ITEM: 'item',
-};
 
 const StreamListPage = () => {
   const [input, setInput] = useState('');
-  const [cards, setCards] = useState([
-    { id: 0, text: 'The Shawshank Redemption', completed: false },
-    { id: 1, text: 'The Godfather', completed: false },
-    { id: 2, text: 'The Dark Knight', completed: false },
-    { id: 3, text: '12 Angry Men', completed: false },
-    { id: 4, text: 'Schindler\'s List', completed: false },
-    { id: 5, text: 'The Lord of the Rings: The Return of the King', completed: false },
-    { id: 6, text: 'Pulp Fiction', completed: false },
-    { id: 7, text: 'The Lord of the Rings: The Fellowship of the Ring', completed: false },
-  ]);
+  const [cards, setCards] = useState(() => {
+    const savedCards = localStorage.getItem('movieList');
+    return savedCards ? JSON.parse(savedCards) : [
+      { id: 0, text: 'The Shawshank Redemption', completed: false },
+      { id: 1, text: 'The Godfather', completed: false },
+      { id: 2, text: 'The Dark Knight', completed: false },
+      { id: 3, text: '12 Angry Men', completed: false },
+      { id: 4, text: 'Schindler\'s List', completed: false },
+      { id: 5, text: 'The Lord of the Rings: The Return of the King', completed: false },
+      { id: 6, text: 'Pulp Fiction', completed: false },
+      { id: 7, text: 'The Lord of the Rings: The Fellowship of the Ring', completed: false },
+    ];
+  });
   const [placeholder, setPlaceholder] = useState('');
   const [editIndex, setEditIndex] = useState(null);
   const [shake, setShake] = useState(false);
@@ -30,6 +25,10 @@ const StreamListPage = () => {
   useEffect(() => {
     setPlaceholder('Enter movie title');
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('movieList', JSON.stringify(cards));
+  }, [cards]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,13 +67,6 @@ const StreamListPage = () => {
     setCards(updatedCards);
   };
 
-  const moveCard = (fromIndex, toIndex) => {
-    const updatedCards = Array.from(cards);
-    const [movedCard] = updatedCards.splice(fromIndex, 1);
-    updatedCards.splice(toIndex, 0, movedCard);
-    setCards(updatedCards);
-  };
-
   return (
     <div className="centered-page">
       <h1>Welcome {'{{USER}}'}</h1>
@@ -93,7 +85,6 @@ const StreamListPage = () => {
       </form>
       <List
         cards={cards}
-        moveCard={moveCard}
         handleEdit={handleEdit}
         handleDelete={handleDelete}
         handleComplete={handleComplete}
