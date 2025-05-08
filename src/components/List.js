@@ -5,28 +5,26 @@ import Card from './Card';
 
 const ulStyle = {
     listStyleType: 'none', // Remove list item dot
-    padding: 0, // Remove default padding 
+    padding: 8, // Remove default padding 
     margin: 0, // Remove default margin
     display: 'flex', // Use flexbox for layout
     flexDirection: 'column', // Align items vertically
     alignItems: 'center', // Center items horizontally
   };
 
-const List = ({ cards, handleEdit, handleDelete, handleComplete, moveCard }) => {
+const List = ({ cards, moveCard, handleEdit, handleDelete, handleComplete }) => {
   return (
     <DndProvider backend={HTML5Backend}>
-      <h2>Watchlist</h2>
       <ul style={ulStyle}>
         {cards.map((card, index) => (
-          <Card
-            key={card.id}
-            card={card}
-            index={index}
-            moveCard={moveCard}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-            handleComplete={handleComplete}
-          />
+          <li key={card.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+            <Card 
+              card={card} 
+              handleEdit={() => handleEdit(index)} 
+              handleDelete={() => handleDelete(index)} 
+              handleComplete={() => handleComplete(index)} 
+            />
+          </li>
         ))}
       </ul>
     </DndProvider>

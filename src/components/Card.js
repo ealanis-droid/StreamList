@@ -40,16 +40,22 @@ const Card = ({ card, index, moveCard, handleEdit, handleDelete, handleComplete 
   drag(drop(ref));
 
   return (
-    <li
-      ref={ref}
-      style={{
-        ...style,
-        opacity: isDragging ? 0.5 : 1,
-        color: card.completed ? 'green' : 'black',
-        fontWeight: card.completed ? 'bold' : 'normal',
-      }}
-    >
-      {card.text}
+    <div ref={ref} style={{ 
+      border: '1px solid #ddd', 
+      borderRadius: '5px', 
+      padding: '10px', 
+      marginBottom: '10px', 
+      display: 'flex', 
+      alignItems: 'center' 
+    }}>
+      {card.poster && (
+        <img
+          src={card.poster}
+          alt={card.text}
+          style={{ width: '50px', height: '75px', marginRight: '10px' }} // Adjust size as needed
+        />
+      )}
+      <span style={{ flex: 1 }}>{card.text}</span>
       <FontAwesomeIcon 
         icon={faEdit} 
         onClick={() => handleEdit(index)} 
@@ -65,7 +71,7 @@ const Card = ({ card, index, moveCard, handleEdit, handleDelete, handleComplete 
         onClick={() => handleComplete(index)} 
         style={{ color: card.completed ? 'green' : 'gray', marginLeft: '10px', cursor: 'pointer' }} 
       />
-    </li>
+    </div>
   );
 };
 
