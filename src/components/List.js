@@ -5,7 +5,7 @@ import Card from './Card';
 
 const ulStyle = {
     listStyleType: 'none', // Remove list item dot
-    padding: 0, // Remove default padding 
+    padding: 8, // Remove default padding 
     margin: 0, // Remove default margin
     display: 'flex', // Use flexbox for layout
     flexDirection: 'column', // Align items vertically
@@ -15,7 +15,6 @@ const ulStyle = {
 const List = ({ cards, moveCard, handleEdit, handleDelete, handleComplete }) => {
   return (
     <DndProvider backend={HTML5Backend}>
-      <h2>Watchlist</h2>
       <ul style={ulStyle}>
         {cards.map((card, index) => (
           <Card

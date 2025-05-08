@@ -56,15 +56,6 @@ const MovieSearchPage = () => {
 
   // Inline styles
   const styles = {
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      minHeight: '100vh',
-      paddingTop: '60px',
-      backgroundColor: '#f0f4f8', // Light gray-blue for a softer background
-    },
     inputWrapper: {
       display: 'flex',
       alignItems: 'center',
@@ -91,15 +82,17 @@ const MovieSearchPage = () => {
       justifyContent: 'center',
       listStyleType: 'none', // Remove default list styling
       padding: 0,
+      gap: '20px',
+      marginTop: '20px'
     },
     card: {
       border: '1px solid #ddd',
       borderRadius: '5px',
-      margin: '10px',
       width: '150px', // Card width
       textAlign: 'center',
       overflow: 'hidden',
       boxShadow: '0 2px 5px rgba(0, 0, 0, 0.1)',
+      backgroundColor: 'white'
     },
     poster: {
       width: '100%',
@@ -112,8 +105,19 @@ const MovieSearchPage = () => {
   };
 
   return (
-    <div style={styles.container}>
-      <h1>Search Movies</h1>
+    <div style={{ 
+      maxWidth: '800px', 
+      margin: '120px auto 40px',
+      padding: '20px',
+      backgroundColor: 'white',
+      borderRadius: '8px',
+      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+    }}>
+      <h1 style={{ 
+        margin: '0 0 20px 0', 
+        color: '#0d3b66',
+        textAlign: 'center'
+      }}>Search Movies</h1>
       <form onSubmit={handleSearch}>
         <div style={styles.inputWrapper}>
           <input

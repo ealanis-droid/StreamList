@@ -75,8 +75,19 @@ const StreamListPage = () => {
   };
 
   return (
-    <div className="centered-page">
-      <h1>Welcome {'{{USER}}'}</h1>
+    <div style={{ 
+      maxWidth: '800px', 
+      margin: '120px auto 40px',
+      padding: '20px',
+      backgroundColor: 'white',
+      borderRadius: '8px',
+      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
+    }}>
+      <h1 style={{ 
+        margin: '0 0 20px 0', 
+        color: '#0d3b66',
+        textAlign: 'center'
+      }}>Welcome {JSON.parse(localStorage.getItem('user'))?.username}</h1>
       <form onSubmit={handleSubmit}>
         <div className={`input-wrapper ${shake ? 'shake' : ''}`}>
           <input
