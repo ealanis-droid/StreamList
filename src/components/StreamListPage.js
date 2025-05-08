@@ -2,22 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus} from '@fortawesome/free-solid-svg-icons';
 import List from './List';
+import { getMovieList, setMovieList } from '../utils/storage';
 
 const StreamListPage = () => {
   const [input, setInput] = useState('');
-  const [cards, setCards] = useState(() => {
-    const savedCards = localStorage.getItem('movieList');
-    return savedCards ? JSON.parse(savedCards) : [
-      { id: 0, text: 'The Shawshank Redemption', completed: false },
-      { id: 1, text: 'The Godfather', completed: false },
-      { id: 2, text: 'The Dark Knight', completed: false },
-      { id: 3, text: '12 Angry Men', completed: false },
-      { id: 4, text: 'Schindler\'s List', completed: false },
-      { id: 5, text: 'The Lord of the Rings: The Return of the King', completed: false },
-      { id: 6, text: 'Pulp Fiction', completed: false },
-      { id: 7, text: 'The Lord of the Rings: The Fellowship of the Ring', completed: false },
-    ];
-  });
+  const [cards, setCards] = useState(() => getMovieList());
   const [placeholder, setPlaceholder] = useState('');
   const [editIndex, setEditIndex] = useState(null);
   const [shake, setShake] = useState(false);
@@ -27,7 +16,7 @@ const StreamListPage = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('movieList', JSON.stringify(cards));
+    setMovieList(cards);
   }, [cards]);
 
   const handleSubmit = (e) => {
@@ -87,7 +76,7 @@ const StreamListPage = () => {
         margin: '0 0 20px 0', 
         color: '#0d3b66',
         textAlign: 'center'
-      }}>Welcome {JSON.parse(localStorage.getItem('user'))?.username}</h1>
+      }}>Welcome {JSON.parse(localStorage.getItem('user'))?.name}</h1>
       <form onSubmit={handleSubmit}>
         <div className={`input-wrapper ${shake ? 'shake' : ''}`}>
           <input

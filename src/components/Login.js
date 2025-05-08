@@ -5,15 +5,38 @@ import LoginNavbar from './LoginNavbar';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Mock authentication - in a real app, this would call an API
-    if (username && password) {
-      // Store user info in localStorage
-      localStorage.setItem('user', JSON.stringify({ username }));
-      navigate('/streamlist');
+    setError('');
+
+    // Basic validation
+    if (!username || !password) {
+      setError('Please enter both username and password');
+      return;
+    }
+
+    // Check if the entered username and password match the demo credentials
+    if (username === 'demo@email.com' && password === 'password123') {
+      // Retrieve existing user data from localStorage if it exists
+      const existingUser = JSON.parse(localStorage.getItem('user')) || {};
+
+      // Store user info in localStorage, using existing data if available
+      localStorage.setItem('user', JSON.stringify({ 
+        ...existingUser, // Spread existing user data
+        username,
+        firstName: existingUser.firstName || 'Demetrius', // Use existing first name or default
+        lastName: existingUser.lastName || 'Oden', // Use existing last name or default
+        email: existingUser.email || 'demo@email.com', // Use existing email or default
+        avatar: 'https://i.pravatar.cc', // Add avatar URL
+        lastLogin: new Date().toISOString()
+      }));
+      
+      navigate('/'); // Redirect to home page
+    } else {
+      setError('Invalid username or password');
     }
   };
 
@@ -22,7 +45,7 @@ const Login = () => {
       <LoginNavbar />
       <div style={{ 
         maxWidth: '400px', 
-        margin: '120px auto 40px', // Increased top margin from 80px to 120px
+        margin: '120px auto 40px',
         padding: '20px',
         backgroundColor: 'white',
         borderRadius: '8px',
@@ -34,73 +57,76 @@ const Login = () => {
           marginBottom: '30px' 
         }}>Welcome to EZTechMovie</h1>
         
-        <div style={{ 
-          backgroundColor: '#f8f9fa', 
-          padding: '15px', 
-          borderRadius: '4px', 
-          marginBottom: '20px',
-          border: '1px solid #dee2e6'
-        }}>
-          <h3 style={{ margin: '0 0 10px 0', color: '#0d3b66' }}>Demo Credentials</h3>
-          <p style={{ margin: '0', color: '#666' }}>
-            <strong>Username:</strong> demo<br />
-            <strong>Password:</strong> password123
-          </p>
-        </div>
+        {error && (
+          <div style={{
+            backgroundColor: '#fee',
+            color: '#c00',
+            padding: '10px',
+            borderRadius: '4px',
+            marginBottom: '20px'
+          }}>
+            {error}
+          </div>
+        )}
 
         <form onSubmit={handleSubmit}>
           <div style={{ marginBottom: '15px' }}>
+            <label style={{ display: 'block', marginBottom: '5px' }}>Username</label>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Username"
-              style={{ 
-                width: '100%', 
-                padding: '12px',
-                border: '1px solid #dee2e6',
+              style={{
+                width: '100%',
+                padding: '8px',
                 borderRadius: '4px',
-                fontSize: '16px',
-                boxSizing: 'border-box'
+                border: '1px solid #ddd'
               }}
             />
           </div>
           <div style={{ marginBottom: '20px' }}>
+            <label style={{ display: 'block', marginBottom: '5px' }}>Password</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Password"
-              style={{ 
-                width: '100%', 
-                padding: '12px',
-                border: '1px solid #dee2e6',
+              style={{
+                width: '100%',
+                padding: '8px',
                 borderRadius: '4px',
-                fontSize: '16px',
-                boxSizing: 'border-box'
+                border: '1px solid #ddd'
               }}
             />
           </div>
-          <button 
+          <button
             type="submit"
             style={{
               width: '100%',
-              padding: '12px',
+              padding: '10px',
               backgroundColor: '#0d3b66',
               color: 'white',
               border: 'none',
               borderRadius: '4px',
-              cursor: 'pointer',
-              fontSize: '16px',
-              fontWeight: 'bold',
-              transition: 'background-color 0.2s'
+              cursor: 'pointer'
             }}
-            onMouseOver={(e) => e.target.style.backgroundColor = '#0a2d4d'}
-            onMouseOut={(e) => e.target.style.backgroundColor = '#0d3b66'}
           >
             Login
           </button>
         </form>
+
+        <div style={{ 
+          backgroundColor: '#f8f9fa', 
+          padding: '15px', 
+          borderRadius: '4px', 
+          marginTop: '20px',
+          border: '1px solid #dee2e6'
+        }}>
+          <h3 style={{ margin: '0 0 10px 0', color: '#0d3b66' }}>Demo Credentials</h3>
+          <p style={{ margin: '0', color: '#666' }}>
+            <strong>Username:</strong> demo@email.com<br />
+            <strong>Password:</strong> password123
+          </p>
+        </div>
       </div>
     </div>
   );

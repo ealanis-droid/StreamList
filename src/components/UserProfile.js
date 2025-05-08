@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCreditCard, faUsers, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 const UserProfile = () => {
-  const user = JSON.parse(localStorage.getItem('user'));
+  const userData = JSON.parse(localStorage.getItem('user'));
+  const [firstName, setFirstName] = useState(userData.firstName || '');
+  const [lastName, setLastName] = useState(userData.lastName || '');
+  const [email, setEmail] = useState(userData.email || '');
+
+  const handleSave = () => {
+    const updatedUser = {
+      ...userData,
+      firstName,
+      lastName,
+      email,
+    };
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+    alert('Profile updated successfully!');
+  };
 
   return (
     <div style={{ 
@@ -23,7 +37,7 @@ const UserProfile = () => {
         borderBottom: '1px solid #dee2e6'
       }}>
         <img 
-          src="https://i.pravatar.cc/100" 
+          src={`${userData.avatar}/100`}
           alt="User Avatar"
           style={{ 
             borderRadius: '50%',
@@ -32,9 +46,50 @@ const UserProfile = () => {
           }}
         />
         <div>
-          <h1 style={{ margin: '0 0 10px 0', color: '#0d3b66' }}>{user.username}</h1>
+          <h1 style={{ margin: '0 0 10px 0', color: '#0d3b66' }}>{userData.username}</h1>
           <p style={{ margin: '0', color: '#666' }}>Member since 2024</p>
         </div>
+      </div>
+
+      <div style={{ marginBottom: '20px' }}>
+        <h2 style={{ color: '#0d3b66' }}>User Settings</h2>
+        <div>
+          <label>First Name:</label>
+          <input 
+            type="text" 
+            value={firstName} 
+            onChange={(e) => setFirstName(e.target.value)} 
+            style={{ margin: '10px 0', padding: '8px', width: '100%' }} 
+          />
+        </div>
+        <div>
+          <label>Last Name:</label>
+          <input 
+            type="text" 
+            value={lastName} 
+            onChange={(e) => setLastName(e.target.value)} 
+            style={{ margin: '10px 0', padding: '8px', width: '100%' }} 
+          />
+        </div>
+        <div>
+          <label>Email:</label>
+          <input 
+            type="email" 
+            value={email} 
+            onChange={(e) => setEmail(e.target.value)} 
+            style={{ margin: '10px 0', padding: '8px', width: '100%' }} 
+          />
+        </div>
+        <button onClick={handleSave} style={{
+          padding: '8px 16px',
+          backgroundColor: '#0d3b66',
+          color: 'white',
+          border: 'none',
+          borderRadius: '4px',
+          cursor: 'pointer'
+        }}>
+          Save Changes
+        </button>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '20px' }}>

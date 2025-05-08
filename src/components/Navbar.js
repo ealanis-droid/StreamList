@@ -2,13 +2,17 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faFilm, faShoppingCart, faInfoCircle, faSignOutAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+import { removeUser, removeFromStorage } from '../utils/storage';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('user'));
 
   const handleLogout = () => {
-    localStorage.removeItem('user');
+    // Only clear session-specific data
+    removeUser();
+    removeFromStorage('searchResults');
+    removeFromStorage('lastSearchTerm');
     navigate('/login');
   };
 
@@ -37,10 +41,10 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faInfoCircle} /> About
           </Link>
         </li>
-        <li className="user-profile" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <li>
           <Link to="/profile" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
             <img 
-              src="https://i.pravatar.cc/40" 
+              src={`${user.avatar}/40`}
               alt="User Avatar"
               className="avatar"
               style={{ borderRadius: '50%' }}

@@ -17,15 +17,14 @@ const List = ({ cards, moveCard, handleEdit, handleDelete, handleComplete }) => 
     <DndProvider backend={HTML5Backend}>
       <ul style={ulStyle}>
         {cards.map((card, index) => (
-          <Card
-            key={card.id}
-            card={card}
-            index={index}
-            moveCard={moveCard}
-            handleEdit={handleEdit}
-            handleDelete={handleDelete}
-            handleComplete={handleComplete}
-          />
+          <li key={card.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
+            <Card 
+              card={card} 
+              handleEdit={() => handleEdit(index)} 
+              handleDelete={() => handleDelete(index)} 
+              handleComplete={() => handleComplete(index)} 
+            />
+          </li>
         ))}
       </ul>
     </DndProvider>
