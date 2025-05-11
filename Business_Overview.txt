@@ -1,53 +1,49 @@
 Project Purpose
 About the Company
-1. EZTechMovie is a privately owned video streaming company with its headquarters and data located in San Diego, California. Pat Jones, the Founder and CEO, established EZTechMovie in April of 2019.
-2. As an online movie streaming and rental company, EZTechMovie offers a variety of flat-rate package subscriptions to its customers throughout the United States. It has a revenue of $1.5 million per year and currently employs 70 people.
-3. Presently the company has about one million subscribers. It is estimated that, in the next three years, the number of customers will increase to 10 million.
+1.	EZTechMovie is a privately owned video streaming company with its headquarters and data located in San Diego, California. Pat Jones, the Founder and CEO, established EZTechMovie in April of 2019.
+2.	As an online movie streaming and rental company, EZTechMovie offers a variety of flat-rate package subscriptions to its customers throughout the United States. It has a revenue of $1.5 million per year and currently employs 70 people.
+3.	Presently the company has about one million subscribers. It is estimated that, in the next three years, the number of customers will increase to 10 million.
 Customer Plans
 STREAMING EXPERIENCE PLANS
-* Individual Plan: Customers can stream one movie to a single device at a time. This is the most common plan.
-* Friendly Plan: Customers can stream movies to up to two devices simultaneously in high definition (HD) if available.
-* Family Plan: Customers can stream movies to up to four devices simultaneously in ultra-high definition (UHD) if available.
+•	Individual Plan: Customers can stream one movie to a single device at a time. This is the most common plan.
+•	Friendly Plan: Customers can stream movies to up to two devices simultaneously in high definition (HD) if available.
+•	Family Plan: Customers can stream movies to up to four devices simultaneously in ultra-high definition (UHD) if available.
 STREAMLIST EXPERIENCE PLANS (MINIMUM)
-* Basic Subscription: Customers can maintain one list, and it has no sharing features.
-* Gold Subscription: Allows customers to maintain 1 to 5 lists and does not include any sharing features.
-* Premium Subscription: Family plan featuring multiple lists and built-in sharing capabilities among family members.
-* Social Media Sharing Subscription: This subscription merges premium access with the ability for customers to share their movie lists on social media platforms, allowing other users to comment on and react to these lists.
+•	Basic Subscription: Customers can maintain one list, and it has no sharing features.
+•	Gold Subscription: Allows customers to maintain 1 to 5 lists and does not include any sharing features.
+•	Premium Subscription: Family plan featuring multiple lists and built-in sharing capabilities among family members.
+•	Social Media Sharing Subscription: This subscription merges premium access with the ability for customers to share their movie lists on social media platforms, allowing other users to comment on and react to these lists.
 StreamList Minimum Requirements
 Here are management suggestions regarding StreamList's minimal requirements: Note: Bear in mind that the company expects additional features beyond what you'll cover in the five-week course. While many of these ideas won't be implemented during your coursework, they provide a solid foundation for software development. So, feel free to expand your Software Requirements Specification (SRS), Gantt chart, wireframe, and project plans accordingly.
-* User authentication should be implemented.
-* To-do list creation and sharing details as follows:
-o Users can create, edit, and manage lists within the application.
-o Lists can be shared with friends and followers on popular social media platforms.
-* Movie search and information display details as follows:
-o Users should have the option to view selected movies within the application.
-* In-app movie viewing details as follows:
-o Users should have the option to view selected movies within the application.
-* Customer service details as follows:
-o Each customer can only have one account.
-o Customers can upgrade/downgrade plans at any time.
-o Customers can cancel plans at any time.
-o Each customer can or cannot add family members, depending on their plan.
-* Shopping cart system details as follows:
-o The application should feature a shopping cart functionality for users to add items for purchase.
-o Users can review, modify, and proceed to a checkout from their shopping cart.
-* Credit card management details as follows:
-o Users can securely add, edit, and delete credit card information.
-o Should comply with data protection regulations
+•	User authentication should be implemented.
+•	To-do list creation and sharing details as follows:
+o	Users can create, edit, and manage lists within the application.
+o	Lists can be shared with friends and followers on popular social media platforms.
+•	Movie search and information display details as follows:
+o	Users should have the option to view selected movies within the application.
+•	In-app movie viewing details as follows:
+o	Users should have the option to view selected movies within the application.
+•	Customer service details as follows:
+o	Each customer can only have one account.
+o	Customers can upgrade/downgrade plans at any time.
+o	Customers can cancel plans at any time.
+o	Each customer can or cannot add family members, depending on their plan.
+•	Shopping cart system details as follows:
+o	The application should feature a shopping cart functionality for users to add items for purchase.
+o	Users can review, modify, and proceed to a checkout from their shopping cart.
+•	Credit card management details as follows:
+o	Users can securely add, edit, and delete credit card information.
+o	Should comply with data protection regulations
 Mission Statement
-EZTechMovie�s mission is to be the highest quality movie streaming entity nationally and to acquire licensing for movie content globally, plus create a plethora of user-friendly apps to handle customer�s various needs.
+EZTechMovie’s mission is to be the highest quality movie streaming entity nationally and to acquire licensing for movie content globally, plus create a plethora of user-friendly apps to handle customer’s various needs.
 Values
-EZTechMovie�s values include (a) high creativity, (b) integrity, (c) geniality, (d) reliability, and (e) economy.
+EZTechMovie’s values include (a) high creativity, (b) integrity, (c) geniality, (d) reliability, and (e) economy.
 Goals and Objectives
 CONTENT AND SERVICES GOAL
 Encourage an intelligent culture through offering reliable content and services accessible through multiple platforms.
-* The company offers noncommercial content and services, with special consideration for children�s needs and diverse and multicultural audiences.
-* The company enables the distribution of genuine content complying with the editorial integrity of movie producers that is selected according to customer preferences.
-* The company makes content development available to all across multiple platforms.
+•	The company offers noncommercial content and services, with special consideration for children’s needs and diverse and multicultural audiences.
+•	The company enables the distribution of genuine content complying with the editorial integrity of movie producers that is selected according to customer preferences.
+•	The company makes content development available to all across multiple platforms.
 NOVELTY GOAL
 Improve the quality of media content and service by supporting ground-breaking, innovative projects.
-* Cultivates new approaches that align with the fast-paced means by which the public uses the media
-
-
-1 of 2
-
+•	Cultivates new approaches that align with the fast-paced means by which the public uses the media
